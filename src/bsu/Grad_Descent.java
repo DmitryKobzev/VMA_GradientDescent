@@ -74,8 +74,8 @@ public class Grad_Descent {
         printMatrix(symmetricMatrix,N);
 
         //умножение неоднородности b на транспонированную матрицу слева
-        double []f =new double [N];
-       /* for(int i=0;i<N;i++){
+     /*   double []f =new double [N];
+        for(int i=0;i<N;i++){
             for(int j=0;j<N;j++){
                 f[i] += aT[i][j] * b[j];
             }
@@ -83,13 +83,13 @@ public class Grad_Descent {
         for(int i=0;i<N;i++){
             b[i]=f[i];
         }*/
-        System.out.println("Новая неоднородность:");
+        System.out.println("Неоднородность:");
         printVector(b,N);
     }
     private double [] calc_tGradF(double [][] m,double [] x_k){
         double [] result= new double [N];
         double fraction;
-        fraction=scalarMultiplication(calculateVectorNevyazki(m,x_k,N),calculateVectorNevyazki(m,x_k,N),N) / scalarMultiplication(calculateVectorNevyazki(m,x_k,N),calculateVectorNevyazki(m,x_k,N),N);
+        fraction=scalarMultiplication(calculateVectorNevyazki(m,x_k,N),calculateVectorNevyazki(m,x_k,N),N) / scalarMultiplication(matrixVectorMultiplication(m,calculateVectorNevyazki(m,x_k,N),N),calculateVectorNevyazki(m,x_k,N),N);
         fraction = -fraction;
         result=scalarVectorMultiplication(fraction,calculateVectorNevyazki(m,x_i,N),N);
         return result;
